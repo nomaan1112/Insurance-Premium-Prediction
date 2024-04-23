@@ -1,11 +1,11 @@
 numpy
 Flask
-gunicorn
-sklearn
+scikit-learn
 pandas
 PyYAML
 evidently
 dill
 matplotlib
 pytest
--e .
+xgboost
+seaborn

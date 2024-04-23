@@ -1,35 +1,26 @@
-from setuptools import setup,find_packages
+from setuptools import find_packages,setup
 from typing import List
 
-#Declaring variables from setup functions
-PROJECT_NAME="Insurace_premium_prediction"
-VERSION="0.0.3"
-AUTHOR="Mohd Noman Ansari"
-DESCRIPTION="This is my first self made project"
-REQUIREMENT_FILE_NAME="requirements.txt"
+HYPEN_E_DOT='-e .'
+def get_requirements(file_path:str)->List[str]:
+    '''
+    this function will return the list of requirements
+    '''
+    requirements=[]
+    with open(file_path) as file_obj:
+        requirements=file_obj.readlines()
+        requirements=[req.replace("\n","") for req in requirements]
 
-HYPEN_E_DOT="-e ."
-
-
-def get_requirements_list()->List[str]:
-    """
-    Description : This Function is going to return list of requirements
-    mention in requirements.txt file
-    """
-    with open(REQUIREMENT_FILE_NAME) as requirement_file :
-        requirement_list=requirement_file.readlines()
-        requirement_list=[requirement_name.replace("\n","") for requirement_name in requirement_list]
-        if HYPEN_E_DOT in requirement_list:
-            requirement_list.remove(HYPEN_E_DOT)
-
-        return requirement_list
-
+        if HYPEN_E_DOT in requirements:
+            requirements.remove(HYPEN_E_DOT)
+    
+    return requirements
 
 setup(
-name=PROJECT_NAME,
-version=VERSION,
-author=AUTHOR,
-description=DESCRIPTION,
+name='Insurance Premium Prediction',
+version='0.0.1',
+author='Nomaan',
+author_email='nomaanansarii100@gmail.com',
 packages=find_packages(),
-install_requires=get_requirements_list()
+install_requires=get_requirements('requirements.txt')
 )
