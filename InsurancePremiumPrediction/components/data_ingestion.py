@@ -27,7 +27,13 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Entered the Data ingestion phase.")
         try:
-            df = pd.read_csv("E:\\Projects\\Insurance-Premium-Prediction\\Data\\insurance.csv")
+            file_name = 'insurance.csv'
+            current_dir=os.getcwd()
+            components = current_dir.split(os.sep)
+            second_prev_dir = os.sep.join(components[:-2])
+            file_path = os.path.join(second_prev_dir,'Data',file_name)
+            logging.info("Reading the Dataset from the file")
+            df = pd.read_csv(file_path)
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
 
